@@ -1,0 +1,19 @@
+{
+  "name": "front-end-testing-example",
+  "version": "1.0.0",
+  "description": "Ejemplos introductorios a testing de front end",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltrinidad/front-end-testing-example.git"
+  },
+  "author": "ltrinidad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ltrinidad/front-end-testing-example/issues"
+  },
+  "homepage": "https://github.com/ltrinidad/front-end-testing-example#readme"
+}
