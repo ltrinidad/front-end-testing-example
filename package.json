@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ltrinidad/front-end-testing-example/issues"
   },
-  "homepage": "https://github.com/ltrinidad/front-end-testing-example#readme"
+  "homepage": "https://github.com/ltrinidad/front-end-testing-example#readme",
+  "dependencies": {
+    "create-react-app": "^2.1.8"
+  }
 }
