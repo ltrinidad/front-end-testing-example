@@ -1,32 +1,33 @@
-import {Ronda} from "../Ronda";
+import {Ronda} from "../Ronda/Ronda";
 
-test('Cuando no hay nadie en la ronda y se pide el proximo se obtiene que no hay nadie en la ronda', () => {
-    const ronda = new Ronda();
-    expect(ronda.proximo()).toEqual(Ronda.noHayNadie)
+test("La clase abstracta Ronda no puede ser instanciada", () => {
+    try {
+        new Ronda();
+        throw new Error();
+    } catch (e) {
+        expect(e.message).toEqual(Ronda.errorDeInstanciacion);
+    }
 });
 
-test('Cuando hay una persona en la ronda y se pide el proximo se obtiene el nombre de esa persona', () => {
-    const ronda = new Ronda();
-    ronda.agregar('feche');
-    expect(ronda.proximo()).toEqual('feche');
+
+test("El metodo agregar debe ser implementado por las subclases de Ronda", () => {
+    let nuevaRonda = class NuevaRonda extends Ronda {};
+
+    try {
+        new nuevaRonda().agregar('algo');
+        throw new Error();
+    } catch (e) {
+        expect(e.message).toEqual(Ronda.implementarAgregar);
+    }
 });
 
-test('Cuando hay dos personas y se pide el proximo se obtiene la primera que ingreso, luego si se pide de nuevo el proximo se obtiene la segunda', () => {
-    const ronda = new Ronda();
-    ronda.agregar('feche');
-    ronda.agregar('angie');
-    expect(ronda.proximo()).toEqual('feche');
-    expect(ronda.proximo()).toEqual('angie')
-});
+test("El metodo proximo debe ser implementado por las subclases de Ronda", () => {
+    let nuevaRonda = class NuevaRonda extends Ronda {};
 
-test('Cuando hay tres personas y se pide el proximo 4 veces se obtiene el primero que ingreso, luego si se pide de nuevo el proximo se obtiene el segundo', () => {
-    const ronda = new Ronda();
-    ronda.agregar('feche');
-    ronda.agregar('angie');
-    ronda.agregar('lalo');
-
-    [1,2,3].forEach(() => ronda.proximo());
-
-    expect(ronda.proximo()).toEqual('feche');
-    expect(ronda.proximo()).toEqual('angie')
+    try {
+        new nuevaRonda().proximo();
+        throw new Error();
+    } catch (e) {
+        expect(e.message).toEqual(Ronda.implementarProximo);
+    }
 });
