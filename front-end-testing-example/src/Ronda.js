@@ -13,7 +13,9 @@ export class Ronda {
         if(this.personas.length === 0){
             return Ronda.noHayNadie
         } else {
-            return this.personas.shift()
+            let proximo = this.personas.shift();
+            this.personas.push(proximo);
+            return proximo
         }
     }
 }
