@@ -10,3 +10,11 @@ test('Cuando hay una persona en la ronda y se pide el proximo se obtiene el nomb
     ronda.agregar('feche');
     expect(ronda.proximo()).toEqual('feche');
 });
+
+test('Cuando hay dos personas y se pide el proximo se obtiene la primera que ingreso, luego si se pide de nuevo el proximo se obtiene la segunda', () => {
+    const ronda = new Ronda();
+    ronda.agregar('feche');
+    ronda.agregar('angie');
+    expect(ronda.proximo()).toEqual('feche');
+    expect(ronda.proximo()).toEqual('angie')
+});

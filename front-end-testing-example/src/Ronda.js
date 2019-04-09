@@ -1,15 +1,19 @@
 export class Ronda {
-    static noHayNadie = 'no hay nadie en la ronda';
+    static noHayNadie = 'no hay personas en la ronda';
 
     constructor(){
-        this.turnoDe = Ronda.noHayNadie
+        this.personas = []
     }
 
     agregar(unaPersona){
-        this.turnoDe = unaPersona
+        this.personas.push(unaPersona)
     }
 
     proximo() {
-        return this.turnoDe
+        if(this.personas.length === 0){
+            return Ronda.noHayNadie
+        } else {
+            return this.personas.shift()
+        }
     }
 }
