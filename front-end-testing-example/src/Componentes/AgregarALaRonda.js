@@ -7,9 +7,13 @@ export class AgregarALaRonda extends Component {
             <Grid>
                 <Grid.Row>
                     <Input focus placeholder={'Nombre de la persona...'} className={'input-agregar'}/>
-                    <Button className={'boton-agregar'} children={"Agregar a la ronda de mates"}/>
+                    <Button className={'boton-agregar'} children={"Agregar a la ronda de mates"} onClick={(event) => this.agregarPersona(event.target.value)}/>
                 </Grid.Row>
             </Grid>
         )
+    }
+
+    agregarPersona = (persona) => {
+        this.props.rondaDeMates.agregar(persona)
     }
 }
