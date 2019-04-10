@@ -11,3 +11,10 @@ it('Se renderiza un boton', () => {
 
     expect(componente.find('.boton-agregar')).toHaveLength(1);
 });
+
+it('Se renderiza un input', () => {
+    const componente = shallow(<AgregarALaRonda/>);
+
+    expect(componente.find('.input-agregar')).toHaveLength(1);
+});
+
