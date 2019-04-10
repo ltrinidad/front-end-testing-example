@@ -1,4 +1,4 @@
-import {Ronda} from "../Ronda/Ronda";
+import {Ronda} from "../../Ronda/Ronda";
 
 test("La clase abstracta Ronda no puede ser instanciada", () => {
     try {

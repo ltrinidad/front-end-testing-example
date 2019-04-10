@@ -1,4 +1,4 @@
-import {RondaDeMates} from "../RondaDeMates";
+import {RondaDeMates} from "../../RondaDeMates";
 
 test('Cuando no hay nadie en la ronda y se pide el proximo se obtiene que no hay nadie en la ronda', () => {
     const ronda = new RondaDeMates();
