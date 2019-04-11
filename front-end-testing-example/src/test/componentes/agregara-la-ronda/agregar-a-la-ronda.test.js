@@ -7,6 +7,8 @@ import {RondaDeMates} from "../../../RondaDeMates";
 
 configure({ adapter: new Adapter() });
 
+let rondaDeMates = new RondaDeMates();
+
 it('Se renderiza un boton', () => {
     const componente = shallow(<AgregarALaRonda/>);
 
@@ -14,7 +16,10 @@ it('Se renderiza un boton', () => {
 });
 
 describe('Cuando se oprime el boton', () => {
-    let rondaDeMates = new RondaDeMates();
+    beforeEach(() => {
+        rondaDeMates = new RondaDeMates();
+    });
+
     const agregarPersonaA = (unaRondaDeMates) => (unaPersona) => {unaRondaDeMates.agregar(unaPersona)};
 
     describe('y se ingreso un nombre valido', () => {
@@ -27,6 +32,19 @@ describe('Cuando se oprime el boton', () => {
 
             componente.find('.boton-agregar').simulate('click');
             expect(rondaDeMates.proximo()).toEqual(unNombreValido.personaAAgregar);
+        })
+    });
+
+    describe('y se ingreso un nombre invalido', () => {
+        const unNombreInvalido = {
+            personaAAgregar: ''
+        };
+
+        it('no se agrega una persona a la ronda', () => {
+            const componente = shallow(<AgregarALaRonda estado={unNombreInvalido} agregarPersona={agregarPersonaA(rondaDeMates)} />);
+
+            componente.find('.boton-agregar').simulate('click');
+            expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);
         })
     });
 });
