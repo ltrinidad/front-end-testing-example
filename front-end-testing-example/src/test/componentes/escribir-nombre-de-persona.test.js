@@ -7,8 +7,13 @@ import {EscribirNombreDePersona} from "../../Componentes/EscribirNombreDePersona
 configure({ adapter: new Adapter() });
 
 let personaAAgregar = '';
+
+beforeEach(() => {
+    personaAAgregar = '';
+});
+
 const actualizarNombre = (unaPersonaAAgregar) => (nuevaLetra) => {
-    personaAAgregar = unaPersonaAAgregar.concat(nuevaLetra)
+    personaAAgregar = unaPersonaAAgregar.concat(nuevaLetra).trim()
 };
 
 it('Se renderiza un input', () => {
@@ -18,10 +23,6 @@ it('Se renderiza un input', () => {
 });
 
 describe('Cuando no se escribe una letra', () => {
-    const actualizarNombre = (unaPersonaAAgregar) => (nuevaLetra) => {
-        personaAAgregar = unaPersonaAAgregar.concat(nuevaLetra)
-    };
-
     it('no se agrega nada al nombre de la persona', () => {
         const componente = shallow(<EscribirNombreDePersona actualizar={actualizarNombre(personaAAgregar)}/>);
 
@@ -39,5 +40,16 @@ describe('Cuando se escribe una letra', () => {
 
         componente.find('.input-agregar').simulate('change', {}, {value: primeraLetraDelNombre});
         expect(personaAAgregar).toEqual(primeraLetraDelNombre);
+    })
+});
+
+describe('Cuando se escribe un espacio', () => {
+    let espacio = ' ';
+
+    it('no cambia el nombre de la persona', () => {
+        const componente = shallow(<EscribirNombreDePersona actualizar={actualizarNombre(personaAAgregar)}/>);
+
+        componente.find('.input-agregar').simulate('change', {}, {value: espacio});
+        expect(personaAAgregar).toEqual("");
     })
 });
