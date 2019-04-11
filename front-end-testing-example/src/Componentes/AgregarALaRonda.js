@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
-import {Button, Grid, Input} from "semantic-ui-react";
+import {Button} from "semantic-ui-react";
 
 export class AgregarALaRonda extends Component {
     render() {
         return (
-            <Grid>
-                <Grid.Row>
-                    <Input focus placeholder={'Nombre de la persona...'} className={'input-agregar'}/>
-                    <Button className={'boton-agregar'} children={"Agregar a la ronda de mates"} onClick={(event) => this.agregarPersona(event.target.value)}/>
-                </Grid.Row>
-            </Grid>
+            <Button className={'boton-agregar'} onClick={this.agregarPersona} children={"Agregar a la ronda de mates"}/>
         )
     }
 
-    agregarPersona = (persona) => {
-        this.props.rondaDeMates.agregar(persona)
+    agregarPersona = () => {
+        this.props.agregarPersona(this.props.estado.personaAAgregar)
     }
 }

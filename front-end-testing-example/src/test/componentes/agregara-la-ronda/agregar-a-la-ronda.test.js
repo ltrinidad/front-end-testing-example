@@ -13,16 +13,20 @@ it('Se renderiza un boton', () => {
     expect(componente.find('.boton-agregar')).toHaveLength(1);
 });
 
-it('Se renderiza un input', () => {
-    const componente = shallow(<AgregarALaRonda/>);
-
-    expect(componente.find('.input-agregar')).toHaveLength(1);
-});
-
-it('Cuando se oprime el boton se agrega una persona a la ronda', () => {
+describe('Cuando se oprime el boton', () => {
     let rondaDeMates = new RondaDeMates();
-    const componente = shallow(<AgregarALaRonda rondaDeMates={rondaDeMates}/>);
+    const agregarPersonaA = (unaRondaDeMates) => (unaPersona) => {unaRondaDeMates.agregar(unaPersona)};
 
-    componente.find('.boton-agregar').simulate('click', {"target":{"value":'feche'}});
-    expect(rondaDeMates.proximo()).toEqual('feche');
+    describe('y se ingreso un nombre valido', () => {
+        const unNombreValido = {
+            personaAAgregar: 'lalo'
+        };
+
+        it('se agrega una persona a la ronda', () => {
+            const componente = shallow(<AgregarALaRonda estado={unNombreValido} agregarPersona={agregarPersonaA(rondaDeMates)} />);
+
+            componente.find('.boton-agregar').simulate('click');
+            expect(rondaDeMates.proximo()).toEqual(unNombreValido.personaAAgregar);
+        })
+    });
 });
