@@ -11,3 +11,17 @@ it('Se renderiza un input', () => {
 
     expect(componente.find('.input-agregar')).toHaveLength(1);
 });
+
+describe('Cuando no se escribe una letra', () => {
+    let personaAAgregar = '';
+    const actualizarNombre = (unaPersonaAAgregar) => (nuevaLetra) => {
+        personaAAgregar = unaPersonaAAgregar.concat(nuevaLetra)
+    };
+
+    it('no se agrega nada al nombre de la persona', () => {
+        const componente = shallow(<EscribirNombreDePersona actualizar={actualizarNombre(personaAAgregar)}/>);
+
+        componente.find('.input-agregar').simulate('change', {}, {value: ''});
+        expect(personaAAgregar).toEqual(personaAAgregar);
+    })
+});
