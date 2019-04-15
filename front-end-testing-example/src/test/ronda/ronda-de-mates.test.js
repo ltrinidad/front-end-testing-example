@@ -1,5 +1,6 @@
 import {RondaDeMates} from "../../RondaDeMates";
 import {RondaVacia} from "../../Ronda/RondaVacia";
+import {RondaNoVacia} from "../../Ronda/RondaNoVacia";
 
 function rondaDeMates() {
     return new RondaDeMates(new RondaVacia());
@@ -10,13 +11,13 @@ test('Cuando no hay nadie en la ronda y se pide el proximo se obtiene que no hay
     expect(ronda.proximo()).toEqual(RondaDeMates.noHayNadie)
 });
 
-test('Cuando hay una persona en la ronda y se pide el proximo se obtiene el nombre de esa persona', () => {
+test('Cuando se agrega una persona a la ronda y se pide el proximo se obtiene el nombre de esa persona', () => {
     const ronda = rondaDeMates();
     const nuevaRonda = ronda.agregar('feche');
     expect(nuevaRonda.proximo()).toEqual('feche');
 });
 
-test('Cuando hay dos rondaDePersonas y se pide el proximo se obtiene la primera que ingreso, luego si se pide de nuevo el proximo se obtiene la segunda', () => {
+test('Cuando se agregan dos personas y se pide el proximo se obtiene la primera que ingreso, luego si se pide de nuevo el proximo se obtiene la segunda', () => {
     const ronda = rondaDeMates();
     const nuevaRonda = ronda.agregar('feche')
                             .agregar('angie');
@@ -24,7 +25,7 @@ test('Cuando hay dos rondaDePersonas y se pide el proximo se obtiene la primera 
     expect(nuevaRonda.proximo()).toEqual('angie')
 });
 
-test('Cuando hay tres rondaDePersonas y se pide el proximo 4 veces se obtiene el primero que ingreso, luego si se pide de nuevo el proximo se obtiene el segundo', () => {
+test('Cuando se agregan tres personas y se pide el proximo 4 veces se obtiene el primero que ingreso, luego si se pide de nuevo el proximo se obtiene el segundo', () => {
     const ronda = rondaDeMates();
     const nuevaRonda = ronda.agregar('feche')
                             .agregar('angie')
@@ -34,4 +35,13 @@ test('Cuando hay tres rondaDePersonas y se pide el proximo 4 veces se obtiene el
 
     expect(nuevaRonda.proximo()).toEqual('feche');
     expect(nuevaRonda.proximo()).toEqual('angie')
+});
+
+test('Cuando ya hay dos personas y se pide el proximo se obtiene la primera que ingreso, luego si se pide de nuevo el proximo se obtiene la segunda', () => {
+    const ronda = new RondaDeMates(new RondaNoVacia(['feche', 'angie', 'lalo']));
+
+    [1,2,3].forEach(() => ronda.proximo());
+
+    expect(ronda.proximo()).toEqual('feche');
+    expect(ronda.proximo()).toEqual('angie')
 });
