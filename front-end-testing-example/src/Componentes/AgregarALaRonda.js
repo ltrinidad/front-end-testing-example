@@ -11,8 +11,6 @@ export class AgregarALaRonda extends Component {
     }
 
     agregarPersona = () => {
-        if(this.props.personaAAgregar !== "") {
-            this.props.agregarPersona(this.props.personaAAgregar)
-        }
+        this.props.agregarPersona(this.props.personaAAgregar)
     }
 }
