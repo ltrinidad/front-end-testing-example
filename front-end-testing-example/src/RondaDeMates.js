@@ -3,12 +3,12 @@ import {RondaVacia} from "./Ronda/RondaVacia";
 export class RondaDeMates {
     static noHayNadie = RondaVacia.esVacia;
 
-    constructor(){
-        this.rondaDePersonas = new RondaVacia()
+    constructor(rondaInicial){
+        this.rondaDePersonas = rondaInicial
     }
 
     agregar(unaPersona){
-        this.rondaDePersonas = this.rondaDePersonas.agregar(unaPersona)
+        return new RondaDeMates(this.rondaDePersonas.agregar(unaPersona))
     }
 
     proximo() {
