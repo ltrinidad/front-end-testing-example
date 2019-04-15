@@ -26,3 +26,12 @@ describe('Cuando se ingresa un nombre valido', () => {
         expect(rondaDeMates.proximo()).toEqual(unNombreValido);
     })
 });
+
+describe('Cuando se ingresa un nombre invalido', () => {
+    const unNombreInvalido = '';
+
+    it('no se agrega una persona a la ronda', () => {
+        agregarPersonaA(rondaDeMates)(unNombreInvalido);
+        expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);
+    })
+});
