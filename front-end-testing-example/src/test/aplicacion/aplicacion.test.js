@@ -49,7 +49,7 @@ describe('Luego de que se agrego una persona', () => {
 
         let input = componente.find('Input').instance();
 
-        expect(input.props.valorInicial).toEqual(nombreInicial)
+        expect(input.props.value).toEqual(nombreInicial)
     });
 });
 
