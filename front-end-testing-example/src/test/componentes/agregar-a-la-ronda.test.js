@@ -4,10 +4,15 @@ import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme';
 import {AgregarALaRonda} from "../../Componentes/AgregarALaRonda";
 import {RondaDeMates} from "../../RondaDeMates";
+import {RondaVacia} from "../../Ronda/RondaVacia";
 
 configure({ adapter: new Adapter() });
 
-let rondaDeMates = new RondaDeMates();
+function rondaVacia() {
+    return new RondaDeMates(new RondaVacia());
+}
+
+let rondaDeMates = rondaVacia();
 
 it('Se renderiza un boton', () => {
     const componente = shallow(<AgregarALaRonda/>);
@@ -17,10 +22,10 @@ it('Se renderiza un boton', () => {
 
 describe('Cuando se oprime el boton', () => {
     beforeEach(() => {
-        rondaDeMates = new RondaDeMates();
+        rondaDeMates = rondaVacia();
     });
 
-    const agregarPersonaA = (unaRondaDeMates) => (unaPersona) => {unaRondaDeMates.agregar(unaPersona)};
+    const agregarPersonaA = (unaRondaDeMates) => (unaPersona) => {rondaDeMates = unaRondaDeMates.agregar(unaPersona)};
 
     describe('y se ingreso un nombre valido', () => {
         const unNombreValido = 'lalo';

@@ -25,7 +25,10 @@ class App extends Component {
 
     agregarALaRonda = (unaPersona) => {
         let nuevaRonda = this.state.rondaDeMates.agregar(unaPersona);
-        this.setState({rondaDeMates: nuevaRonda})
+        this.setState({
+            rondaDeMates: nuevaRonda,
+            personaAAgregar: ''
+        })
     };
 
     agregarLetra = (nuevaLetra) => {
