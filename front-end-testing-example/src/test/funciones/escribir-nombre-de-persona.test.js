@@ -30,3 +30,13 @@ describe('Cuando se escribe una letra', () => {
         expect(nombre).toEqual(primeraLetraDelNombre);
     })
 });
+
+describe('Cuando se escribe un espacio', () => {
+    let espacio = ' ';
+
+    it('no cambia el nombre de la persona', () => {
+        const nombre = actualizarNombre(personaAAgregar)(espacio);
+
+        expect(nombre).toEqual(personaAAgregar);
+    })
+});
