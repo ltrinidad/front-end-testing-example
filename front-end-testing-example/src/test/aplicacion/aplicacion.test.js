@@ -13,7 +13,7 @@ afterEach(() => {
 
 function agregarUnaPersona(componente, unNombreValido) {
     let input = componente.find('Input').instance();
-    [...unNombreValido].forEach((letra) => input.props.onChange({}, {value: letra}));
+    [...unNombreValido].forEach((letra) => input.props.onKeyDown({key: letra}));
     let boton = componente.find('Button').instance();
     boton.props.onClick();
 }

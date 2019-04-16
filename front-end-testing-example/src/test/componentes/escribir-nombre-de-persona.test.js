@@ -33,15 +33,29 @@ describe('Cuando no se escribe una letra', () => {
 });
 
 
+const borrarUltimaLetra = () => {
+    personaAAgregar = personaAAgregar.slice(0, personaAAgregar.length - 1)
+};
+
 describe('Cuando se escribe una letra', () => {
     let primeraLetraDelNombre = 'f';
 
     it('se agrega al nombre de la persona', () => {
         const componente = shallow(<EscribirNombreDePersona actualizar={actualizarNombre(personaAAgregar)}/>);
 
-        componente.find('.input-agregar').simulate('change', {}, {value: primeraLetraDelNombre});
+        componente.find('.input-agregar').simulate('keyDown', {key: primeraLetraDelNombre});
         expect(personaAAgregar).toEqual(primeraLetraDelNombre);
-    })
+    });
+
+    describe('y luego se oprime la tecla para borrar', () => {
+        it('el nombre pierde la ultima letra', () => {
+            const componente = shallow(<EscribirNombreDePersona actualizar={actualizarNombre(personaAAgregar)} borrarUltimaLetra={borrarUltimaLetra}/>);
+
+            componente.find('.input-agregar').simulate('change', {}, {value: primeraLetraDelNombre});
+            componente.find('.input-agregar').simulate('keyDown', {key: 'Backspace'});
+            expect(personaAAgregar).toEqual('');
+        })
+    });
 });
 
 describe('Cuando se escribe un espacio', () => {

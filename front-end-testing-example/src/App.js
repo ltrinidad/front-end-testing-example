@@ -5,6 +5,7 @@ import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
+import {Form} from "semantic-ui-react";
 
 class App extends Component {
     state = {
@@ -16,12 +17,20 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} actualizar={this.agregarLetra}/>
-                    <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
+                    <Form>
+                        <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} actualizar={this.agregarLetra} borrarUltimaLetra={this.borrarUltimaLetra}/>
+                        <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
+                    </Form>
                 </header>
             </div>
         );
     }
+
+    borrarUltimaLetra = () => {
+        this.setState({
+            personaAAgregar: this.state.personaAAgregar.slice(0, this.state.personaAAgregar.length - 1)
+        })
+    };
 
     agregarALaRonda = (unaPersona) => {
         let nuevaRonda = this.state.rondaDeMates.agregar(unaPersona);
