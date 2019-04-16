@@ -26,8 +26,9 @@ describe('Cuando no se escribe una letra', () => {
     it('no se agrega nada al nombre de la persona', () => {
         const componente = shallow(<EscribirNombreDePersona actualizar={actualizarNombre(personaAAgregar)}/>);
 
-        componente.find('.input-agregar').simulate('change', {}, {value: ''});
-        expect(personaAAgregar).toEqual(personaAAgregar);
+        let vacio = '';
+        componente.find('.input-agregar').simulate('change', {}, {value: vacio});
+        expect(personaAAgregar).toEqual(vacio);
     })
 });
 
