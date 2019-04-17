@@ -5,6 +5,8 @@ import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
+import {agregarPersonaA} from "./Funciones/agregar-a-la-ronda";
+import {actualizarNombre} from "./Funciones/escribir-nombre-de-persona";
 
 class App extends Component {
     state = {
@@ -24,12 +26,12 @@ class App extends Component {
     }
 
     agregarALaRonda = (unaPersona) => {
-        let nuevaRonda = this.state.rondaDeMates.agregar(unaPersona);
+        let nuevaRonda = agregarPersonaA(this.state.rondaDeMates)(unaPersona);
         this.setState({rondaDeMates: nuevaRonda})
     };
 
     agregarLetra = (nuevaLetra) => {
-        this.setState({personaAAgregar: this.state.personaAAgregar.concat(nuevaLetra).trim()})
+        this.setState({personaAAgregar: actualizarNombre(this.state.personaAAgregar)(nuevaLetra)})
     }
 }
 

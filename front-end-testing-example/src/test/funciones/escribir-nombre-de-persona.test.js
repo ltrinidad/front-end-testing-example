@@ -22,13 +22,25 @@ describe('Cuando no se escribe una letra', () => {
 
 
 describe('Cuando se escribe una letra', () => {
-    let primeraLetraDelNombre = 'f';
+    const primeraLetraDelNombre = 'f';
 
     it('se agrega al nombre de la persona', () => {
         const nombre = actualizarNombre(personaAAgregar)(primeraLetraDelNombre);
 
         expect(nombre).toEqual(primeraLetraDelNombre);
-    })
+    });
+
+    describe('y luego otra', () => {
+
+        let segundaLetraDelNombre = 'e';
+
+        it('se agrega al nombre de la persona', () => {
+            let nombre = actualizarNombre(personaAAgregar)(primeraLetraDelNombre);
+            nombre = actualizarNombre(nombre)(segundaLetraDelNombre);
+
+            expect(nombre).toEqual(primeraLetraDelNombre.concat(segundaLetraDelNombre));
+        })
+    });
 });
 
 describe('Cuando se escribe un espacio', () => {
