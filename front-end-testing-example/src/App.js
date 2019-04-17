@@ -5,7 +5,7 @@ import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
-import {agregarPersonaA} from "./Funciones/agregar-a-la-ronda";
+import {rondaAPartirDe} from "./Funciones/agregar-a-la-ronda";
 import {nombreAPartirDe} from "./Funciones/escribir-nombre-de-persona";
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <EscribirNombreDePersona actualizar={this.agregarLetra}/>
+                    <EscribirNombreDePersona agregarLetra={this.agregarLetra}/>
                     <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
                 </header>
             </div>
@@ -26,7 +26,7 @@ class App extends Component {
     }
 
     agregarALaRonda = (unaPersona) => {
-        let nuevaRonda = agregarPersonaA(this.state.rondaDeMates)(unaPersona);
+        let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, unaPersona);
         this.setState({rondaDeMates: nuevaRonda})
     };
 

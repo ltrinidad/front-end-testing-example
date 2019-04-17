@@ -1,1 +1,1 @@
-export const agregarPersonaA = (unaRondaDeMates) => (unaPersona) => (unaPersona !== "") ? unaRondaDeMates.agregar(unaPersona) : unaRondaDeMates;
+export const rondaAPartirDe = (unaRondaDeMates, unaPersona) => (unaPersona !== "") ? unaRondaDeMates.agregar(unaPersona) : unaRondaDeMates;

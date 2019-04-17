@@ -2,7 +2,7 @@ import React from 'react';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {RondaDeMates} from "../../RondaDeMates";
-import {agregarPersonaA} from "../../Funciones/agregar-a-la-ronda";
+import {rondaAPartirDe} from "../../Funciones/agregar-a-la-ronda";
 import {RondaVacia} from "../../Ronda/RondaVacia";
 
 configure({ adapter: new Adapter() });
@@ -18,7 +18,7 @@ describe('Cuando se ingresa un nombre valido', () => {
     const unNombreValido = 'lalo';
 
     it('se agrega una persona a la ronda', () => {
-        rondaDeMates = agregarPersonaA(rondaDeMates)(unNombreValido);
+        rondaDeMates = rondaAPartirDe(rondaDeMates, unNombreValido);
         expect(rondaDeMates.proximo()).toEqual(unNombreValido);
     })
 });
@@ -27,7 +27,7 @@ describe('Cuando se ingresa un nombre invalido', () => {
     const unNombreInvalido = '';
 
     it('no se agrega una persona a la ronda', () => {
-        rondaDeMates = agregarPersonaA(rondaDeMates)(unNombreInvalido);
+        rondaDeMates = rondaAPartirDe(rondaDeMates, unNombreInvalido);
         expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);
     })
 });
