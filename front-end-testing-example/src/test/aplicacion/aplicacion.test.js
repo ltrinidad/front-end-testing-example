@@ -28,3 +28,16 @@ describe('Cuando inicia la aplicacion', () => {
         expect(componente.state().rondaDeMates.proximo()).toEqual(unNombreValido);
     });
 });
+
+
+describe('Luego de que se agrego una persona', () => {
+    it('permite cargar otro nombre distinto', () => {
+        const unNombreValido = 'lalo';
+        componente = mount(<App/>);
+        const nombreInicial = componente.state().personaAAgregar;
+
+        agregarPersona(componente, unNombreValido);
+
+        expect(componente.state().personaAAgregar).toEqual(nombreInicial)
+    });
+});

@@ -27,7 +27,10 @@ class App extends Component {
 
     agregarALaRonda = (unaPersona) => {
         let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, unaPersona);
-        this.setState({rondaDeMates: nuevaRonda})
+        this.setState({
+            rondaDeMates: nuevaRonda,
+            personaAAgregar: ''
+        })
     };
 
     agregarLetra = (nuevaLetra) => {
