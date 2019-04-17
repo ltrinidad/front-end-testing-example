@@ -40,4 +40,16 @@ describe('Luego de que se agrego una persona', () => {
 
         expect(componente.state().personaAAgregar).toEqual(nombreInicial)
     });
+
+    it('el campo para cargar el nombre queda vacio', () => {
+        const unNombreValido = 'lalo';
+        componente = mount(<App/>);
+        const nombreInicial = componente.state().personaAAgregar;
+
+        agregarPersona(componente, unNombreValido);
+
+        let input = componente.find('Input').instance();
+
+        expect(input.props.value).toEqual(nombreInicial)
+    });
 });

@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <EscribirNombreDePersona agregarLetra={this.agregarLetra}/>
+                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} agregarLetra={this.agregarLetra}/>
                     <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
                 </header>
             </div>
