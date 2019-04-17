@@ -18,7 +18,7 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} agregarLetra={this.agregarLetra}/>
+                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} agregarLetra={this.editarNombre}/>
                     <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
                 </header>
             </div>
@@ -33,7 +33,7 @@ class App extends Component {
         })
     };
 
-    agregarLetra = (nuevaLetra) => {
+    editarNombre = (nuevaLetra) => {
         this.setState({personaAAgregar: nombreAPartirDe(this.state.personaAAgregar, nuevaLetra)})
     }
 }

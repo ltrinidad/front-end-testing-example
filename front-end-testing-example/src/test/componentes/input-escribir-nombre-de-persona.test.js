@@ -11,7 +11,7 @@ describe('Cuando se escribe una letra', () => {
     it('se llama al callback', () => {
         const componente = shallow(<EscribirNombreDePersona agregarLetra={callback}/>);
 
-        componente.find('.input-agregar').simulate('change', {}, {value: 'f'});
+        componente.find('.input-agregar').simulate('keyPress', {key: 'f'});
 
         expect(callback).toBeCalled();
     })

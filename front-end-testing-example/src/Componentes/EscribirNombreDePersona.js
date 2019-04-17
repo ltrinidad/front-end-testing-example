@@ -4,11 +4,7 @@ import {Input} from "semantic-ui-react";
 export class EscribirNombreDePersona extends Component {
     render() {
         return (
-            <Input value={this.props.valorInicial} placeholder={"Nombre de la persona..."} className={'input-agregar'} onChange={(event, data) => this.seAgregoUnaLetra(data.value)}/>
+            <Input type={'text'} value={this.props.valorInicial} placeholder={"Nombre de la persona..."} className={'input-agregar'} onKeyPress={({key}) => this.props.agregarLetra(key)}/>
         )
-    }
-
-    seAgregoUnaLetra = (unaLetra) => {
-        this.props.agregarLetra(unaLetra)
     }
 }

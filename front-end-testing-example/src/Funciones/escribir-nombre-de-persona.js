@@ -1,1 +1,1 @@
-export const nombreAPartirDe = (unaPersonaAAgregar, nuevaLetra) => unaPersonaAAgregar.concat(nuevaLetra).trim();
+export const nombreAPartirDe = (unNombre, tecla) => (tecla !== 'Backspace') ? unNombre.concat(tecla).trim() : unNombre.slice(0, unNombre.length - 1);
