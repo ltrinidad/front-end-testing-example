@@ -6,7 +6,7 @@ import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
 import {agregarPersonaA} from "./Funciones/agregar-a-la-ronda";
-import {actualizarNombre} from "./Funciones/escribir-nombre-de-persona";
+import {nombreAPartirDe} from "./Funciones/escribir-nombre-de-persona";
 
 class App extends Component {
     state = {
@@ -31,7 +31,7 @@ class App extends Component {
     };
 
     agregarLetra = (nuevaLetra) => {
-        this.setState({personaAAgregar: actualizarNombre(this.state.personaAAgregar)(nuevaLetra)})
+        this.setState({personaAAgregar: nombreAPartirDe(this.state.personaAAgregar, nuevaLetra)})
     }
 }
 

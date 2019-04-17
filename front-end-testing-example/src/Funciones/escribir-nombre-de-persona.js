@@ -1,1 +1,1 @@
-export const actualizarNombre = (unaPersonaAAgregar) => (nuevaLetra) => unaPersonaAAgregar.concat(nuevaLetra).trim();
+export const nombreAPartirDe = (unaPersonaAAgregar, nuevaLetra) => unaPersonaAAgregar.concat(nuevaLetra).trim();
