@@ -2,10 +2,6 @@ import {RondaDeMates} from "../../RondaDeMates";
 import {RondaVacia} from "../../Ronda/RondaVacia";
 import {RondaNoVacia} from "../../Ronda/RondaNoVacia";
 
-function rondaDeMates() {
-    return new RondaDeMates(new RondaVacia());
-}
-
 let ronda;
 
 beforeEach(() => {
@@ -44,10 +40,18 @@ test('Cuando se agregan tres personas y se pide el proximo 4 veces se obtiene el
 });
 
 test('Cuando ya hay dos personas y se pide el proximo se obtiene la primera que ingreso, luego si se pide de nuevo el proximo se obtiene la segunda', () => {
-    const ronda = new RondaDeMates(new RondaNoVacia([feche, angie, lalo]));
+    ronda = rondaDeMatesCon([feche, angie, lalo]);
 
     [1,2,3].forEach(() => ronda.proximo());
 
     expect(ronda.proximo()).toEqual(feche);
     expect(ronda.proximo()).toEqual(angie)
 });
+
+function rondaDeMates() {
+    return new RondaDeMates(new RondaVacia());
+}
+
+function rondaDeMatesCon(personas) {
+    return new RondaDeMates(new RondaNoVacia(personas));
+}
