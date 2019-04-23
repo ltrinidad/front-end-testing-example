@@ -5,14 +5,26 @@ import {EscribirNombreDePersona} from "../../Componentes/EscribirNombreDePersona
 
 configure({ adapter: new Adapter() });
 
-const callback = jest.fn(() => null);
+const agregarLetra = jest.fn(() => null);
 
 describe('Cuando se escribe una letra', () => {
-    it('se llama al callback', () => {
-        const componente = shallow(<EscribirNombreDePersona agregarLetra={callback}/>);
+    it('se llama al callback de agregarLetra', () => {
+        const componente = shallow(<EscribirNombreDePersona agregarLetra={agregarLetra}/>);
 
-        componente.find('.input-agregar').simulate('keyPress', {key: 'f'});
+        componente.find('.input-agregar').simulate('keyDown', {key: 'f'});
 
-        expect(callback).toBeCalled();
+        expect(agregarLetra).toBeCalled();
+    })
+});
+
+const borrarUltimaLetra = jest.fn(() => null);
+
+describe('Cuando se presiona la tecla de borrar', () => {
+    it('se llama al callback de borrarUltimaLetra', () => {
+        const componente = shallow(<EscribirNombreDePersona borrarUltimaLetra={borrarUltimaLetra}/>);
+
+        componente.find('.input-agregar').simulate('keyDown', {key: 'Backspace'});
+
+        expect(borrarUltimaLetra).toBeCalled();
     })
 });
