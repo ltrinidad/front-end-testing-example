@@ -18,12 +18,18 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} agregarLetra={this.editarNombre}/>
+                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} agregarLetra={this.editarNombre} borrarUltimaLetra={this.borrarUltimaLetra}/>
                     <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
                 </header>
             </div>
         );
     }
+
+    borrarUltimaLetra = () => {
+        this.setState({
+            personaAAgregar: this.state.personaAAgregar.slice(0, this.state.personaAAgregar.length - 1)
+        })
+    };
 
     agregarALaRonda = (unaPersona) => {
         let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, unaPersona);
