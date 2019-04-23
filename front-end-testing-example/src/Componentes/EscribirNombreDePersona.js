@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Input} from "semantic-ui-react";
+import {esLaTeclaDeBorrar, esUnaLetra} from "../funciones/letras";
 
 export class EscribirNombreDePersona extends Component {
     render() {
@@ -9,10 +10,10 @@ export class EscribirNombreDePersona extends Component {
     }
 
     teclaPresionada = ({key}) => {
-        if(key === 'Backspace'){
-            this.props.borrarUltimaLetra();
-        } else {
+        if(esUnaLetra(key)){
             this.props.actualizar(key)
+        } else if(esLaTeclaDeBorrar(key)){
+            this.props.borrarUltimaLetra();
         }
-    }
+    };
 }
