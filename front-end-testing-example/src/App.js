@@ -5,6 +5,7 @@ import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
+import {sinUltimaLetra} from "./Funciones/letras";
 import {rondaAPartirDe} from "./Funciones/agregar-a-la-ronda";
 import {nombreAPartirDe} from "./Funciones/escribir-nombre-de-persona";
 
@@ -27,7 +28,7 @@ class App extends Component {
 
     borrarUltimaLetra = () => {
         this.setState({
-            personaAAgregar: this.state.personaAAgregar.slice(0, this.state.personaAAgregar.length - 1)
+            personaAAgregar: sinUltimaLetra(this.state.personaAAgregar)
         })
     };
 
