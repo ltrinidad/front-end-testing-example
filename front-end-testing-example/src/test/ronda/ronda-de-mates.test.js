@@ -6,18 +6,19 @@ let ronda;
 
 beforeEach(() => {
 	ronda = rondaDeMates();
-})
+});
 
-const angie = 'angie'
-const feche = 'feche'
-const lalo = 'lalo'
+const angie = 'angie';
+const feche = 'feche';
+const lalo = 'lalo';
 
-test('Cuando no hay nadie en la ronda y se pide el proximo se obtiene que no hay nadie en la ronda', () => {
+test('Cuando no hay nadie en la ronda y se pide el proximo se obtiene que la ronda esta vacia', () => {
     expect(ronda.proximo()).toEqual(RondaDeMates.noHayNadie)
 });
 
 test('Cuando se agrega una persona a la ronda y se pide el proximo se obtiene el nombre de esa persona', () => {
     const nuevaRonda = ronda.agregar(feche);
+
     expect(nuevaRonda.proximo()).toEqual(feche);
 });
 
