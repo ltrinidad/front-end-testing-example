@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Input} from "semantic-ui-react";
-import {esLaTeclaDeBorrar, esUnaLetra} from "../funciones/letras";
+import {esLaTeclaDeBorrar, esUnaLetra} from "../Funciones/letras";
 
 export class EscribirNombreDePersona extends Component {
     render() {

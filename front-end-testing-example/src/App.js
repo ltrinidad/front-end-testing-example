@@ -6,6 +6,7 @@ import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
 import {Form} from "semantic-ui-react";
+import {sinUltimaLetra} from "./Funciones/letras";
 
 class App extends Component {
     state = {
@@ -28,7 +29,7 @@ class App extends Component {
 
     borrarUltimaLetra = () => {
         this.setState({
-            personaAAgregar: this.state.personaAAgregar.slice(0, this.state.personaAAgregar.length - 1)
+            personaAAgregar: sinUltimaLetra(this.state.personaAAgregar)
         })
     };
 
