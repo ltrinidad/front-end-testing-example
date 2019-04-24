@@ -8,6 +8,7 @@ import {RondaVacia} from "./Ronda/RondaVacia";
 import {sinUltimaLetra} from "./Funciones/letras";
 import {rondaAPartirDe} from "./Funciones/agregar-a-la-ronda";
 import {nombreAPartirDe} from "./Funciones/escribir-nombre-de-persona";
+import {Form} from "semantic-ui-react";
 
 class App extends Component {
     state = {
@@ -19,8 +20,13 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} agregarLetra={this.editarNombre} borrarUltimaLetra={this.borrarUltimaLetra}/>
-                    <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
+                    <Form>
+                        <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
+                                                 agregarLetra={this.editarNombre}
+                                                 borrarUltimaLetra={this.borrarUltimaLetra}/>
+                        <AgregarALaRonda personaAAgregar={this.state.personaAAgregar}
+                                         agregarPersona={this.agregarALaRonda}/>
+                    </Form>
                 </header>
             </div>
         );
