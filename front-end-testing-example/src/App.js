@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
-import {Form} from "semantic-ui-react";
-import {sinUltimaLetra} from "./Funciones/letras";
+import {Form, Input} from "semantic-ui-react";
+import {esLaTeclaDeBorrar, esUnaLetra, sinUltimaLetra} from "./Funciones/letras";
 
 class App extends Component {
     state = {
@@ -19,13 +18,22 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <Form>
-                        <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} actualizar={this.agregarLetra} borrarUltimaLetra={this.borrarUltimaLetra}/>
+                        <Input type='text' value={this.state.personaAAgregar} placeholder={"Nombre de la persona..."} className={'input-agregar'} onKeyDown={this.teclaPresionada}/>
+                        {/*<EscribirNombreDePersona valorInicial={this.state.personaAAgregar} actualizar={this.agregarLetra} borrarUltimaLetra={this.borrarUltimaLetra}/>*/}
                         <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
                     </Form>
                 </header>
             </div>
         );
     }
+
+    teclaPresionada = ({key}) => {
+        if(esUnaLetra(key)){
+            this.agregarLetra(key)
+        } else if(esLaTeclaDeBorrar(key)){
+            this.borrarUltimaLetra();
+        }
+    };
 
     borrarUltimaLetra = () => {
         this.setState({
