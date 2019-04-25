@@ -5,7 +5,7 @@ import {esLaTeclaDeBorrar, esUnaLetra} from "../Funciones/letras";
 export class EscribirNombreDePersona extends Component {
     render() {
         return (
-            <Input type={'text'} value={this.props.valorInicial} placeholder={"Nombre de la persona..."} className={'input-agregar'} onKeyDown={this.teclaPresionada}/>
+            <Input value={this.props.valorInicial} placeholder={"Nombre de la persona..."} className={'input-agregar'} onKeyDown={this.teclaPresionada}/>
         )
     }
 
