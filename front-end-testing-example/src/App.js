@@ -6,9 +6,8 @@ import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
 import {sinUltimaLetra} from "./Funciones/letras";
-import {rondaAPartirDe} from "./Funciones/agregar-a-la-ronda";
-import {nombreAPartirDe} from "./Funciones/escribir-nombre-de-persona";
 import {Form} from "semantic-ui-react";
+import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/palabras";
 
 class App extends Component {
     state = {

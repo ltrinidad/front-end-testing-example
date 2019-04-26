@@ -1,7 +1,7 @@
 import React from 'react';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {nombreAPartirDe} from "../../Funciones/escribir-nombre-de-persona";
+import {nombreAPartirDe} from "../../Funciones/palabras";
 
 configure({ adapter: new Adapter() });
 
@@ -19,7 +19,6 @@ describe('Cuando no se escribe una letra', () => {
         expect(nombre).toEqual(vacio);
     })
 });
-
 
 describe('Cuando se escribe una letra', () => {
     const primeraLetraDelNombre = 'f';
@@ -39,17 +38,6 @@ describe('Cuando se escribe una letra', () => {
             nombre = nombreAPartirDe(nombre, segundaLetraDelNombre);
 
             expect(nombre).toEqual(primeraLetraDelNombre.concat(segundaLetraDelNombre));
-        })
-    });
-
-    describe('y luego se borra', () => {
-        let teclaBorrar = 'Backspace';
-
-        it('el nombre pierde la ultima letra', () => {
-            let nombre = nombreAPartirDe(personaAAgregar, primeraLetraDelNombre);
-            nombre = nombreAPartirDe(nombre, teclaBorrar);
-
-            expect(nombre).toEqual(personaAAgregar);
         })
     });
 });

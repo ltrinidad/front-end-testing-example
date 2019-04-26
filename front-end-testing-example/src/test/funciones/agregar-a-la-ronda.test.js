@@ -2,8 +2,8 @@ import React from 'react';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {RondaDeMates} from "../../RondaDeMates";
-import {rondaAPartirDe} from "../../Funciones/agregar-a-la-ronda";
 import {RondaVacia} from "../../Ronda/RondaVacia";
+import {rondaAPartirDe} from "../../Funciones/palabras";
 
 configure({ adapter: new Adapter() });
 
