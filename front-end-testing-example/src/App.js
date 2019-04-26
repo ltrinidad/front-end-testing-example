@@ -21,7 +21,7 @@ class App extends Component {
                 <header className="App-header">
                     <Form>
                         <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
-                                                 agregarLetra={this.editarNombre}
+                                                 agregarLetra={this.agregarLetra}
                                                  borrarUltimaLetra={this.borrarUltimaLetra}/>
                         <AgregarALaRonda personaAAgregar={this.state.personaAAgregar}
                                          agregarPersona={this.agregarALaRonda}/>
@@ -45,7 +45,7 @@ class App extends Component {
         })
     };
 
-    editarNombre = (nuevaLetra) => {
+    agregarLetra = (nuevaLetra) => {
         this.setState({personaAAgregar: nombreAPartirDe(this.state.personaAAgregar, nuevaLetra)})
     }
 }
