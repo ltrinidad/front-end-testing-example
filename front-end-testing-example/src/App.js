@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
@@ -7,6 +7,7 @@ import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
 import {Form} from "semantic-ui-react";
 import {sinUltimaLetra} from "./Funciones/letras";
+import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/palabras";
 
 class App extends Component {
     state = {
@@ -19,8 +20,11 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <Form>
-                        <EscribirNombreDePersona valorInicial={this.state.personaAAgregar} actualizar={this.agregarLetra} borrarUltimaLetra={this.borrarUltimaLetra}/>
-                        <AgregarALaRonda personaAAgregar={this.state.personaAAgregar} agregarPersona={this.agregarALaRonda}/>
+                        <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
+                                                 agregarLetra={this.agregarLetra}
+                                                 borrarUltimaLetra={this.borrarUltimaLetra}/>
+                        <AgregarALaRonda personaAAgregar={this.state.personaAAgregar}
+                                         agregarPersona={this.agregarALaRonda}/>
                     </Form>
                 </header>
             </div>
@@ -34,7 +38,7 @@ class App extends Component {
     };
 
     agregarALaRonda = (unaPersona) => {
-        let nuevaRonda = this.state.rondaDeMates.agregar(unaPersona);
+        let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, this.state.personaAAgregar);
         this.setState({
             rondaDeMates: nuevaRonda,
             personaAAgregar: ''
@@ -42,9 +46,8 @@ class App extends Component {
     };
 
     agregarLetra = (nuevaLetra) => {
-        this.setState({personaAAgregar: this.state.personaAAgregar.concat(nuevaLetra).trim()})
+        this.setState({personaAAgregar: nombreAPartirDe(this.state.personaAAgregar, nuevaLetra)})
     }
 }
 
 export default App;
-

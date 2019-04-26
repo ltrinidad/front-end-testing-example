@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import {AgregarALaRonda} from "../../Componentes/AgregarALaRonda";
 import {RondaDeMates} from "../../RondaDeMates";
 import {RondaVacia} from "../../Ronda/RondaVacia";
+import {rondaAPartirDe} from "../../Funciones/palabras";
 
 configure({ adapter: new Adapter() });
 
@@ -25,13 +26,13 @@ describe('Cuando se oprime el boton', () => {
         rondaDeMates = rondaVacia();
     });
 
-    const agregarPersonaA = (unaRondaDeMates) => (unaPersona) => {rondaDeMates = unaRondaDeMates.agregar(unaPersona)};
+    const agregarPersonaALaRonda = (unaPersona) => {rondaDeMates = rondaAPartirDe(rondaDeMates, unaPersona)};
 
     describe('y se ingreso un nombre valido', () => {
         const unNombreValido = 'lalo';
 
         it('se agrega una persona a la ronda', () => {
-            const componente = shallow(<AgregarALaRonda personaAAgregar={unNombreValido} agregarPersona={agregarPersonaA(rondaDeMates)} />);
+            const componente = shallow(<AgregarALaRonda personaAAgregar={unNombreValido} agregarPersona={agregarPersonaALaRonda} />);
 
             componente.find('.boton-agregar').simulate('click');
             expect(rondaDeMates.proximo()).toEqual(unNombreValido);
@@ -42,7 +43,7 @@ describe('Cuando se oprime el boton', () => {
         const unNombreInvalido = '';
 
         it('no se agrega una persona a la ronda', () => {
-            const componente = shallow(<AgregarALaRonda personaAAgregar={unNombreInvalido} agregarPersona={agregarPersonaA(rondaDeMates)} />);
+            const componente = shallow(<AgregarALaRonda personaAAgregar={unNombreInvalido} agregarPersona={agregarPersonaALaRonda} />);
 
             componente.find('.boton-agregar').simulate('click');
             expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);

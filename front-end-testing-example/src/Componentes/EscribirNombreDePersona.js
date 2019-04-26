@@ -11,7 +11,7 @@ export class EscribirNombreDePersona extends Component {
 
     teclaPresionada = ({key}) => {
         if(esUnaLetra(key)){
-            this.props.actualizar(key)
+            this.props.agregarLetra(key)
         } else if(esLaTeclaDeBorrar(key)){
             this.props.borrarUltimaLetra();
         }
