@@ -3,16 +3,20 @@ import {Ronda} from "./Ronda";
 export class RondaNoVacia extends Ronda {
     constructor(elementosIniciales){
         super();
-        this.elementos = elementosIniciales
+        this.elems = elementosIniciales
     }
 
     agregar(unElemento){
-        return new RondaNoVacia([...this.elementos, unElemento])
+        return new RondaNoVacia([...this.elems, unElemento])
     }
 
     proximo() {
-        let proximo = this.elementos.shift();
-        this.elementos.push(proximo);
+        let proximo = this.elems.shift();
+        this.elems.push(proximo);
         return proximo
+    }
+
+    elementos() {
+        return this.elems
     }
 }

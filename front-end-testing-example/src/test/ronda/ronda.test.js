@@ -31,3 +31,14 @@ test("El metodo proximo debe ser implementado por las subclases de Ronda", () =>
         expect(e.message).toEqual(Ronda.implementarProximo);
     }
 });
+
+test("El metodo elementos debe ser implementado por las subclases de Ronda", () => {
+    let nuevaRonda = class NuevaRonda extends Ronda {};
+
+    try {
+        new nuevaRonda().elementos();
+        throw new Error();
+    } catch (e) {
+        expect(e.message).toEqual(Ronda.implementarElementos);
+    }
+});
