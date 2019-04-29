@@ -5,7 +5,7 @@ import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
-import {Form} from "semantic-ui-react";
+import {Form, Table} from "semantic-ui-react";
 import {sinUltimaLetra} from "./Funciones/letras";
 import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/palabras";
 
@@ -26,6 +26,22 @@ class App extends Component {
                         <AgregarALaRonda personaAAgregar={this.state.personaAAgregar}
                                          agregarPersona={this.agregarALaRonda}/>
                     </Form>
+                    <div>
+                        <Table celled stackable>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell>Participantes</Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+
+                            <Table.Body>
+                                {
+                                    this.state.rondaDeMates.participantes().map(participante =>
+                                        <Table.Row><Table.Cell>{participante}</Table.Cell></Table.Row>)
+                                }
+                            </Table.Body>
+                        </Table>
+                    </div>
                 </header>
             </div>
         );
