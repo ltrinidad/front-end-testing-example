@@ -9,63 +9,62 @@ import {sinUltimaLetra} from "../../Funciones/letras";
 configure({ adapter: new Adapter() });
 
 let personaAAgregar = '';
+let componente;
 
 beforeEach(() => {
     personaAAgregar = '';
+    componente = shallow(<EscribirNombreDePersona agregarLetra={agregarLetraAlNombre} borrarUltimaLetra={borrarUltimaLetra}/>);
 });
 
 const agregarLetraAlNombre = (nuevaLetra) => {
     personaAAgregar = nombreAPartirDe(personaAAgregar, nuevaLetra)
 };
 
-it('Se renderiza un input', () => {
-    const componente = shallow(<EscribirNombreDePersona/>);
-
-    expect(componente.find('.input-agregar')).toHaveLength(1);
-});
-
-describe('Cuando no se escribe una letra', () => {
-    it('no se agrega nada al nombre de la persona', () => {
-        const componente = shallow(<EscribirNombreDePersona agregarLetra={agregarLetraAlNombre}/>);
-
-        let vacio = '';
-        componente.find('.input-agregar').simulate('keydown', {key: vacio});
-        expect(personaAAgregar).toEqual(vacio);
-    })
-});
-
 const borrarUltimaLetra = () => {
     personaAAgregar = sinUltimaLetra(personaAAgregar)
 };
 
+it('Se renderiza un input', () => {
+    expect(componente.find('.input-agregar')).toHaveLength(1);
+});
+
+describe('Cuando no se escribe una letra', () => {
+    const vacio = '';
+
+    it('no se agrega nada al nombre de la persona', () => {
+        componente.find('.input-agregar').simulate('keydown', {key: vacio});
+
+        expect(personaAAgregar).toEqual(vacio);
+    })
+});
+
 describe('Cuando se escribe una letra', () => {
-    let primeraLetraDelNombre = 'f';
+    const primeraLetraDelNombre = 'f';
 
     it('se agrega al nombre de la persona', () => {
-        const componente = shallow(<EscribirNombreDePersona agregarLetra={agregarLetraAlNombre}/>);
-
         componente.find('.input-agregar').simulate('keyDown', {key: primeraLetraDelNombre});
+
         expect(personaAAgregar).toEqual(primeraLetraDelNombre);
     });
 
     describe('y luego se oprime la tecla para borrar', () => {
-        it('el nombre pierde la ultima letra', () => {
-            const componente = shallow(<EscribirNombreDePersona agregarLetra={agregarLetraAlNombre} borrarUltimaLetra={borrarUltimaLetra}/>);
+        const teclaDeBorrar = 'Backspace';
 
+        it('el nombre pierde la ultima letra', () => {
             componente.find('.input-agregar').simulate('keydown', {key: primeraLetraDelNombre});
-            componente.find('.input-agregar').simulate('keyDown', {key: 'Backspace'});
+            componente.find('.input-agregar').simulate('keyDown', {key: teclaDeBorrar});
+
             expect(personaAAgregar).toEqual('');
         })
     });
 });
 
 describe('Cuando se escribe un espacio', () => {
-    let espacio = ' ';
+    const espacio = ' ';
 
     it('no cambia el nombre de la persona', () => {
-        const componente = shallow(<EscribirNombreDePersona agregarLetra={agregarLetraAlNombre}/>);
-
         componente.find('.input-agregar').simulate('keydown', {key: espacio});
+
         expect(personaAAgregar).toEqual("");
     })
 });
