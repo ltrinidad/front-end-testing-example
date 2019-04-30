@@ -27,7 +27,7 @@ class App extends Component {
                                          agregarPersona={this.agregarALaRonda}/>
                     </Form>
                     <div>
-                        <Table celled stackable>
+                        <Table celled stackable size={"small"}>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>Participantes</Table.HeaderCell>
