@@ -11,6 +11,6 @@ export class AgregarALaRonda extends Component {
     }
 
     agregar = () => {
-        this.props.agregarPersona(this.props.personaAAgregar)
+        this.props.agregarPersona()
     }
 }

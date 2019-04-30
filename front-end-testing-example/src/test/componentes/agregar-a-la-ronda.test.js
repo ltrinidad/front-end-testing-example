@@ -13,16 +13,16 @@ function rondaVacia() {
     return new RondaDeMates(new RondaVacia());
 }
 
-const agregarPersonaALaRonda = (unaPersona) => {rondaDeMates = rondaAPartirDe(rondaDeMates, unaPersona)};
+const agregarPersonaALaRonda = (unaPersona) => () => {rondaDeMates = rondaAPartirDe(rondaDeMates, unaPersona)};
 
-const agregarALaRonda = (nombre) =>  <AgregarALaRonda personaAAgregar={nombre} agregarPersona={agregarPersonaALaRonda} />;
+const componenteAgregarALaRonda = (nombre) =>  <AgregarALaRonda agregarPersona={agregarPersonaALaRonda(nombre)} />;
 
 let rondaDeMates = rondaVacia();
 
 const botonDe = (componente) => componente.find('.boton-agregar');
 
 it('Se renderiza un boton', () => {
-    const componente = shallow(agregarALaRonda(""));
+    const componente = shallow(componenteAgregarALaRonda(""));
 
     expect(botonDe(componente)).toHaveLength(1);
 });
@@ -36,7 +36,7 @@ describe('Cuando se oprime el boton', () => {
         const unNombreValido = 'lalo';
 
         it('se agrega una persona a la ronda', () => {
-            const componente = shallow(agregarALaRonda(unNombreValido));
+            const componente = shallow(componenteAgregarALaRonda(unNombreValido));
 
             botonDe(componente).simulate('click');
             expect(rondaDeMates.proximo()).toEqual(unNombreValido);
@@ -47,7 +47,7 @@ describe('Cuando se oprime el boton', () => {
         const unNombreInvalido = '';
 
         it('no se agrega una persona a la ronda', () => {
-            const componente = shallow(agregarALaRonda(unNombreInvalido));
+            const componente = shallow(componenteAgregarALaRonda(unNombreInvalido));
 
             botonDe(componente).simulate('click');
             expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);
