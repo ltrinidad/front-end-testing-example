@@ -23,8 +23,7 @@ class App extends Component {
                         <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
                                                  agregarLetra={this.agregarLetra}
                                                  borrarUltimaLetra={this.borrarUltimaLetra}/>
-                        <AgregarALaRonda personaAAgregar={this.state.personaAAgregar}
-                                         agregarPersona={this.agregarALaRonda}/>
+                        <AgregarALaRonda agregarPersona={this.agregarALaRonda}/>
                     </Form>
                     <div>
                         <Table celled stackable size={"small"}>
@@ -53,7 +52,7 @@ class App extends Component {
         })
     };
 
-    agregarALaRonda = (unaPersona) => {
+    agregarALaRonda = () => {
         let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, this.state.personaAAgregar);
         this.setState({
             rondaDeMates: nuevaRonda,

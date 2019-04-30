@@ -5,12 +5,12 @@ export class AgregarALaRonda extends Component {
     render() {
         return (
             <Button className={'boton-agregar'}
-                    onClick={this.agregarPersona}
+                    onClick={this.agregar}
                     children={"Agregar a la ronda de mates"}/>
         )
     }
 
-    agregarPersona = () => {
-        this.props.agregarPersona(this.props.personaAAgregar)
+    agregar = () => {
+        this.props.agregarPersona()
     }
 }

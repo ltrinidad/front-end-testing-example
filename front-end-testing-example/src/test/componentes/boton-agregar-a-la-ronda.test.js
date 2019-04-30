@@ -9,7 +9,7 @@ const callback = jest.fn(() => null);
 
 describe('Cuando el boton es clickeado', () => {
     it('se llama al callback', () => {
-        const componente = shallow(<AgregarALaRonda agregarPersona={callback} personaAAgregar={''}/>);
+        const componente = shallow(<AgregarALaRonda agregarPersona={callback}/>);
 
         componente.find('.boton-agregar').simulate('click');
 
