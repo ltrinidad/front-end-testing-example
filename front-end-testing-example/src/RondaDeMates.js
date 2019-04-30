@@ -12,7 +12,8 @@ export class RondaDeMates {
     }
 
     proximo() {
-        return this.rondaDePersonas.proximo();
+        const proximoDeLaRonda = this.rondaDePersonas.proximo();
+        return {nombre: proximoDeLaRonda.valor, nuevaRonda: new RondaDeMates(proximoDeLaRonda.nuevaRonda)};
     }
 
     participantes() {

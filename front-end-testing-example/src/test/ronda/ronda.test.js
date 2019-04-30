@@ -1,4 +1,6 @@
 import {Ronda} from "../../Ronda/Ronda";
+import {RondaVacia} from "../../Ronda/RondaVacia";
+import {RondaNoVacia} from "../../Ronda/RondaNoVacia";
 
 test("La clase abstracta Ronda no puede ser instanciada", () => {
     try {
@@ -30,6 +32,24 @@ test("El metodo proximo debe ser implementado por las subclases de Ronda", () =>
     } catch (e) {
         expect(e.message).toEqual(Ronda.implementarProximo);
     }
+});
+
+describe('Dada una ronda vacia', () => {
+    it('el metodo proximo retorna un objeto con un valor y una nueva ronda', () => {
+        const proximo = new RondaVacia().proximo();
+
+        expect(proximo).toHaveProperty('valor');
+        expect(proximo).toHaveProperty('nuevaRonda')
+    });
+});
+
+describe('Dada una ronda no vacia', () => {
+    it('el metodo proximo retorna un objeto con un valor y una nueva ronda', () => {
+        const proximo = new RondaNoVacia(['a']).proximo();
+
+        expect(proximo).toHaveProperty('valor');
+        expect(proximo).toHaveProperty('nuevaRonda')
+    });
 });
 
 test("El metodo elementos debe ser implementado por las subclases de Ronda", () => {

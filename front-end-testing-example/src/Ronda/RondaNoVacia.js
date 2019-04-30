@@ -11,9 +11,10 @@ export class RondaNoVacia extends Ronda {
     }
 
     proximo() {
-        let proximo = this.elems.shift();
-        this.elems.push(proximo);
-        return proximo
+        let copiaDeElementos = this.elementos().slice(0);
+        let proximo = copiaDeElementos.shift();
+        copiaDeElementos.push(proximo);
+        return {valor: proximo, nuevaRonda: new RondaNoVacia(copiaDeElementos)}
     }
 
     elementos() {

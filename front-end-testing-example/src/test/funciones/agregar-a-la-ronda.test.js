@@ -19,7 +19,7 @@ describe('Cuando se ingresa un nombre valido', () => {
 
     it('se agrega una persona a la ronda', () => {
         rondaDeMates = rondaAPartirDe(rondaDeMates, unNombreValido);
-        expect(rondaDeMates.proximo()).toEqual(unNombreValido);
+        expect(rondaDeMates.proximo().nombre).toEqual(unNombreValido);
     })
 });
 
@@ -28,6 +28,6 @@ describe('Cuando se ingresa un nombre invalido', () => {
 
     it('no se agrega una persona a la ronda', () => {
         rondaDeMates = rondaAPartirDe(rondaDeMates, unNombreInvalido);
-        expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);
+        expect(rondaDeMates.proximo().nombre).toEqual(RondaDeMates.noHayNadie);
     })
 });

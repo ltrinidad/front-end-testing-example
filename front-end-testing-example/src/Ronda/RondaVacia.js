@@ -9,7 +9,7 @@ export class RondaVacia extends Ronda{
     }
 
     proximo() {
-        return RondaVacia.esVacia
+        return {valor: RondaVacia.esVacia, nuevaRonda: new RondaVacia()}
     }
 
     elementos() {
