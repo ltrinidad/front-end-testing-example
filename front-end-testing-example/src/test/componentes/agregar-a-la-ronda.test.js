@@ -13,12 +13,18 @@ function rondaVacia() {
     return new RondaDeMates(new RondaVacia());
 }
 
+const agregarPersonaALaRonda = (unaPersona) => {rondaDeMates = rondaAPartirDe(rondaDeMates, unaPersona)};
+
+const agregarALaRonda = (nombre) =>  <AgregarALaRonda personaAAgregar={nombre} agregarPersona={agregarPersonaALaRonda} />;
+
 let rondaDeMates = rondaVacia();
 
-it('Se renderiza un boton', () => {
-    const componente = shallow(<AgregarALaRonda/>);
+const botonDe = (componente) => componente.find('.boton-agregar');
 
-    expect(componente.find('.boton-agregar')).toHaveLength(1);
+it('Se renderiza un boton', () => {
+    const componente = shallow(agregarALaRonda(""));
+
+    expect(botonDe(componente)).toHaveLength(1);
 });
 
 describe('Cuando se oprime el boton', () => {
@@ -26,15 +32,13 @@ describe('Cuando se oprime el boton', () => {
         rondaDeMates = rondaVacia();
     });
 
-    const agregarPersonaALaRonda = (unaPersona) => {rondaDeMates = rondaAPartirDe(rondaDeMates, unaPersona)};
-
     describe('y se ingreso un nombre valido', () => {
         const unNombreValido = 'lalo';
 
         it('se agrega una persona a la ronda', () => {
-            const componente = shallow(<AgregarALaRonda personaAAgregar={unNombreValido} agregarPersona={agregarPersonaALaRonda} />);
+            const componente = shallow(agregarALaRonda(unNombreValido));
 
-            componente.find('.boton-agregar').simulate('click');
+            botonDe(componente).simulate('click');
             expect(rondaDeMates.proximo()).toEqual(unNombreValido);
         })
     });
@@ -43,9 +47,9 @@ describe('Cuando se oprime el boton', () => {
         const unNombreInvalido = '';
 
         it('no se agrega una persona a la ronda', () => {
-            const componente = shallow(<AgregarALaRonda personaAAgregar={unNombreInvalido} agregarPersona={agregarPersonaALaRonda} />);
+            const componente = shallow(agregarALaRonda(unNombreInvalido));
 
-            componente.find('.boton-agregar').simulate('click');
+            botonDe(componente).simulate('click');
             expect(rondaDeMates.proximo()).toEqual(RondaDeMates.noHayNadie);
         })
     });
