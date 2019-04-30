@@ -11,4 +11,8 @@ export class RondaVacia extends Ronda{
     proximo() {
         return RondaVacia.esVacia
     }
+
+    elementos() {
+        return []
+    }
 }

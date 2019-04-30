@@ -14,4 +14,8 @@ export class RondaDeMates {
     proximo() {
         return this.rondaDePersonas.proximo();
     }
+
+    participantes() {
+        return this.rondaDePersonas.elementos()
+    }
 }
