@@ -5,16 +5,16 @@ import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
-import {Form, Table} from "semantic-ui-react";
+import {Button, Form, Label, Table} from "semantic-ui-react";
 import {sinUltimaLetra} from "./Funciones/letras";
 import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/palabras";
 
 class App extends Component {
     state = {
         rondaDeMates: new RondaDeMates(new RondaVacia()),
-        personaAAgregar: ''
+        personaAAgregar: '',
+        mateCebado: false
     };
-
     render() {
         return (
             <div className="App">
@@ -34,17 +34,41 @@ class App extends Component {
                             </Table.Header>
 
                             <Table.Body>
-                                {
-                                    this.state.rondaDeMates.participantes().map(participante =>
-                                        <Table.Row><Table.Cell>{participante}</Table.Cell></Table.Row>)
-                                }
+                                {this.primeraFila()}
+                                {this.restoDeLasFilas()}
                             </Table.Body>
                         </Table>
                     </div>
+                    <Button tipo={'tomar'} onClick={this.avanzarEnLaRonda} disabled={!this.state.mateCebado}>Tomar</Button>
+                    <Button tipo={'cebar'} onClick={this.cebar} disabled={this.state.rondaDeMates.participantes().length === 0 || this.state.mateCebado}>Cebar</Button>
                 </header>
             </div>
         );
     }
+
+    primeraFila() {
+        return <Table.Row positive><Table.Cell><Label ribbon>Turno
+            de: </Label>{this.state.rondaDeMates.participantes()[0]}</Table.Cell></Table.Row>;
+    }
+
+    restoDeLasFilas() {
+        return this.state.rondaDeMates.participantes().slice(1).map(participante =>
+            <Table.Row negative><Table.Cell>{participante}</Table.Cell></Table.Row>);
+    }
+
+    avanzarEnLaRonda = () => {
+        let proximo = this.state.rondaDeMates.proximo();
+        this.setState({
+            rondaDeMates: proximo.nuevaRonda,
+            mateCebado: false
+        })
+    };
+
+    cebar = () => {
+        this.setState({
+            mateCebado: true
+        })
+    };
 
     borrarUltimaLetra = () => {
         this.setState({
@@ -54,10 +78,11 @@ class App extends Component {
 
     agregarALaRonda = () => {
         let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, this.state.personaAAgregar);
-        this.setState({
+        this.setState((prevState) => ({
+            ...prevState,
             rondaDeMates: nuevaRonda,
             personaAAgregar: ''
-        })
+        }))
     };
 
     agregarLetra = (nuevaLetra) => {
