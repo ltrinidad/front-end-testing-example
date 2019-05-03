@@ -42,8 +42,8 @@ describe('Cuando se agregan dos personas', () => {
     const rondaConDosPersonas = ronda.agregar(feche)
         .agregar(angie);
 
-    describe('y se pide el nombre del proximo', () => {
-        it('se obtiene la primera que ingreso, luego si se pide el nombre del proximo a la nueva ronda se obtiene el nombre de la segunda', () => {
+    describe('y se pide el proximo', () => {
+        it('se obtiene la primera persona que ingreso, luego si se pide el nombre del proximo a la nueva ronda se obtiene el nombre de la segunda persona', () => {
             let primeraVezQueSePregunta = rondaConDosPersonas.proximo();
             expect(primeraVezQueSePregunta.nombre).toEqual(feche);
 
