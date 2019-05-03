@@ -1,4 +1,4 @@
-import {RondaDeMates} from "../../RondaDeMates";
+import {RondaDeMates} from "../../Componentes/RondaDeMates";
 import {RondaVacia} from "../../Ronda/RondaVacia";
 import {RondaNoVacia} from "../../Ronda/RondaNoVacia";
 

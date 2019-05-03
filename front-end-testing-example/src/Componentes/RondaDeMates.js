@@ -1,4 +1,4 @@
-import {RondaVacia} from "./Ronda/RondaVacia";
+import {RondaVacia} from "../Ronda/RondaVacia";
 
 export class RondaDeMates {
     static noHayNadie = RondaVacia.esVacia;

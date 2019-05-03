@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
-import {RondaDeMates} from "./RondaDeMates";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
 import {Button, Form, Label, Table} from "semantic-ui-react";
 import {sinUltimaLetra} from "./Funciones/letras";
 import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/palabras";
+import {RondaDeMates} from "./Componentes/RondaDeMates";
 
 class App extends Component {
     state = {
