@@ -11,12 +11,15 @@ export class RondaDeMates {
         return new RondaDeMates(this.rondaDePersonas.agregar(unaPersona))
     }
 
-    proximo() {
-        const proximoDeLaRonda = this.rondaDePersonas.proximo();
-        return {nombre: proximoDeLaRonda.valor, nuevaRonda: new RondaDeMates(proximoDeLaRonda.nuevaRonda)};
+    avanzarTurno() {
+        return new RondaDeMates(this.rondaDePersonas.avanzarTurno())
     }
 
     participantes() {
         return this.rondaDePersonas.elementos()
+    }
+
+    tomadorActual() {
+        return this.rondaDePersonas.tomadorActual()
     }
 }

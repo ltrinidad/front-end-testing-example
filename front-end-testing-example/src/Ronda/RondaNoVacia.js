@@ -1,8 +1,13 @@
 import {Ronda} from "./Ronda";
 
 export class RondaNoVacia extends Ronda {
-    constructor(elementosIniciales){
+    static errorSinElementos = 'Una RondaNoVacia no puede ser instanciada con una lista vacia como sus elementos iniciales';
+
+    constructor(elementosIniciales = []){
         super();
+        if(elementosIniciales.length === 0) {
+            throw new Error(RondaNoVacia.errorSinElementos)
+        }
         this.elems = elementosIniciales
     }
 
@@ -10,14 +15,16 @@ export class RondaNoVacia extends Ronda {
         return new RondaNoVacia([...this.elems, unElemento])
     }
 
-    proximo() {
-        let copiaDeElementos = this.elementos().slice(0);
-        let proximo = copiaDeElementos.shift();
-        copiaDeElementos.push(proximo);
-        return {valor: proximo, nuevaRonda: new RondaNoVacia(copiaDeElementos)}
+    avanzarTurno() {
+        const [ primero, ...resto ] = this.elementos();
+        return new RondaNoVacia([...resto, primero])
     }
 
     elementos() {
         return this.elems
+    }
+
+    tomadorActual() {
+        return this.elems[0]
     }
 }

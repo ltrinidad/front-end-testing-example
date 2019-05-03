@@ -23,7 +23,7 @@ describe('Cuando inicia la aplicacion', () => {
 
         agregarUnaPersona(app, unNombreValido);
 
-        expect(app.state().rondaDeMates.proximo().nombre).toEqual(unNombreValido);
+        expect(app.state().rondaDeMates.tomadorActual()).toEqual(unNombreValido);
     });
 
     it('en la tabla de nombres solo se muestra el titulo, y la primera fila es vacia', () => {

@@ -8,11 +8,15 @@ export class RondaVacia extends Ronda{
         return new RondaNoVacia([unElemento])
     }
 
-    proximo() {
-        return {valor: RondaVacia.esVacia, nuevaRonda: new RondaVacia()}
+    avanzarTurno() {
+        return new RondaVacia()
     }
 
     elementos() {
         return []
+    }
+
+    tomadorActual() {
+        return RondaVacia.esVacia
     }
 }

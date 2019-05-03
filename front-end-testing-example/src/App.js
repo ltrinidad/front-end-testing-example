@@ -58,9 +58,8 @@ class App extends Component {
     }
 
     avanzarEnLaRonda = () => {
-        let proximo = this.state.rondaDeMates.proximo();
         this.setState({
-            rondaDeMates: proximo.nuevaRonda,
+            rondaDeMates: this.state.rondaDeMates.avanzarTurno(),
             mateCebado: false
         })
     };
