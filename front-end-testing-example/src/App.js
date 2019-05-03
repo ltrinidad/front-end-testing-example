@@ -15,6 +15,7 @@ class App extends Component {
         personaAAgregar: '',
         mateCebado: false
     };
+
     render() {
         return (
             <div className="App">

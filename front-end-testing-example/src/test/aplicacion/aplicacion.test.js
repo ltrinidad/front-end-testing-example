@@ -140,7 +140,7 @@ describe('Luego de que se agregaron dos personas', () => {
 });
 
 function agregarUnaPersona(componente, unNombreValido) {
-    let input = componente.find('Input').instance();
+    let input = componente.find('EscribirNombreDePersona Input').instance();
     [...unNombreValido].forEach((letra) => input.props.onKeyDown({key: letra}));
     let boton = componente.find('AgregarALaRonda').find('Button').instance();
     boton.props.onClick();
