@@ -4,7 +4,7 @@ import 'semantic-ui-css/semantic.min.css'
 import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
 import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
-import {Button, Form, Label, Table} from "semantic-ui-react";
+import {Button, Form, Grid, Label, Table} from "semantic-ui-react";
 import {sinUltimaLetra} from "./Funciones/letras";
 import {RondaDeMates} from "./Componentes/RondaDeMates";
 import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/participantes";
@@ -20,28 +20,41 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <Form>
-                        <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
-                                                 agregarLetra={this.agregarLetra}
-                                                 borrarUltimaLetra={this.borrarUltimaLetra}/>
-                        <AgregarALaRonda agregarPersona={this.agregarALaRonda}/>
-                    </Form>
-                    <div>
-                        <Table celled stackable size={"small"}>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell>Participantes</Table.HeaderCell>
-                                </Table.Row>
-                            </Table.Header>
+                    <Grid columns={2} stackable>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <Form>
+                                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
+                                                             agregarLetra={this.agregarLetra}
+                                                             borrarUltimaLetra={this.borrarUltimaLetra}/>
+                                    <AgregarALaRonda agregarPersona={this.agregarALaRonda}/>
+                                </Form>
+                                <br/>
+                                <Button tipo={'tomar'} onClick={this.avanzarEnLaRonda}
+                                        disabled={!this.state.mateCebado}>Tomar</Button>
+                                <Button tipo={'cebar'} onClick={this.cebar}
+                                        disabled={this.state.rondaDeMates.participantes().length === 0 || this.state.mateCebado}>Cebar</Button>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <div>
+                                    <Table celled stackable size={"small"}>
+                                        <Table.Header>
+                                            <Table.Row>
+                                                <Table.HeaderCell>Participantes</Table.HeaderCell>
+                                            </Table.Row>
+                                        </Table.Header>
 
-                            <Table.Body>
-                                {this.primeraFila()}
-                                {this.restoDeLasFilas()}
-                            </Table.Body>
-                        </Table>
-                    </div>
-                    <Button tipo={'tomar'} onClick={this.avanzarEnLaRonda} disabled={!this.state.mateCebado}>Tomar</Button>
-                    <Button tipo={'cebar'} onClick={this.cebar} disabled={this.state.rondaDeMates.participantes().length === 0 || this.state.mateCebado}>Cebar</Button>
+                                        <Table.Body>
+                                            {this.primeraFila()}
+                                            {this.restoDeLasFilas()}
+                                        </Table.Body>
+                                    </Table>
+                                </div>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+
+
                 </header>
             </div>
         );
