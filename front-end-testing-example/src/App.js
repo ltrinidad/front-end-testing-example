@@ -1,20 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import {EscribirNombreDePersona} from "./Componentes/EscribirNombreDePersona";
-import {AgregarALaRonda} from "./Componentes/AgregarALaRonda";
 import {RondaVacia} from "./Ronda/RondaVacia";
-import {Button, Form, Grid, Label, Table} from "semantic-ui-react";
-import {sinUltimaLetra} from "./Funciones/letras";
+import {Button, Grid, Label, Table} from "semantic-ui-react";
 import {RondaDeMates} from "./Componentes/RondaDeMates";
-import {nombreAPartirDe, rondaAPartirDe} from "./Funciones/participantes";
+import {rondaAPartirDe, todasLasPersonas} from "./Funciones/participantes";
+import {SelectorDePersonas} from "./Componentes/SelectorDePersonas";
 
 class App extends Component {
     state = {
         rondaDeMates: new RondaDeMates(new RondaVacia()),
-        personaAAgregar: '',
-        mateCebado: false
+        mateCebado: false,
+        personas: []
     };
+
+    componentDidMount() {
+        this.setState({personas: todasLasPersonas})
+    }
 
     render() {
         return (
@@ -23,12 +25,7 @@ class App extends Component {
                     <Grid columns={2} stackable>
                         <Grid.Row>
                             <Grid.Column>
-                                <Form>
-                                    <EscribirNombreDePersona valorInicial={this.state.personaAAgregar}
-                                                             agregarLetra={this.agregarLetra}
-                                                             borrarUltimaLetra={this.borrarUltimaLetra}/>
-                                    <AgregarALaRonda agregarPersona={this.agregarALaRonda}/>
-                                </Form>
+                                <SelectorDePersonas agregar={this.agregarALaRonda} personas={this.state.personas}/>
                                 <br/>
                                 <Button tipo={'tomar'} onClick={this.avanzarEnLaRonda}
                                         disabled={!this.state.mateCebado}>Tomar</Button>
@@ -83,24 +80,13 @@ class App extends Component {
         })
     };
 
-    borrarUltimaLetra = () => {
-        this.setState({
-            personaAAgregar: sinUltimaLetra(this.state.personaAAgregar)
-        })
-    };
-
-    agregarALaRonda = () => {
-        let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, this.state.personaAAgregar);
+    agregarALaRonda = (persona) => {
+        let nuevaRonda = rondaAPartirDe(this.state.rondaDeMates, persona);
         this.setState((prevState) => ({
             ...prevState,
-            rondaDeMates: nuevaRonda,
-            personaAAgregar: ''
+            rondaDeMates: nuevaRonda
         }))
     };
-
-    agregarLetra = (nuevaLetra) => {
-        this.setState({personaAAgregar: nombreAPartirDe(this.state.personaAAgregar, nuevaLetra)})
-    }
 }
 
 export default App;
