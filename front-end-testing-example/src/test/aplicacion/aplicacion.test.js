@@ -54,16 +54,6 @@ describe('Luego de que se agrego una persona', () => {
         expect(app.state().personaAAgregar).toEqual(nombreInicial)
     });
 
-    it('el campo para cargar el nombre queda vacio', () => {
-        const nombreInicial = app.state().personaAAgregar;
-
-        agregarUnaPersona(app, unNombreValido);
-
-        let input = app.find('Input').instance();
-
-        expect(input.props.value).toEqual(nombreInicial)
-    });
-
     it('en la tabla de nombres se muestra el titulo y una fila con ese nombre', () => {
         agregarUnaPersona(app, unNombreValido);
 
@@ -140,10 +130,8 @@ describe('Luego de que se agregaron dos personas', () => {
 });
 
 function agregarUnaPersona(componente, unNombreValido) {
-    let input = componente.find('EscribirNombreDePersona Input').instance();
-    [...unNombreValido].forEach((letra) => input.props.onKeyDown({key: letra}));
-    let boton = componente.find('AgregarALaRonda').find('Button').instance();
-    boton.props.onClick();
+    let dropdown = componente.find('SelectorDePersonas Dropdown').instance();
+    dropdown.props.onChange({}, {value: unNombreValido});
     componente.update()
 }
 
