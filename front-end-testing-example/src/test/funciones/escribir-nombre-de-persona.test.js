@@ -1,7 +1,7 @@
 import React from 'react';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {nombreAPartirDe} from "../../Funciones/palabras";
+import {nombreAPartirDe} from "../../Funciones/participantes";
 
 configure({ adapter: new Adapter() });
 
