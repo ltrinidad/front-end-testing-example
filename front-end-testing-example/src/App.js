@@ -4,7 +4,7 @@ import 'semantic-ui-css/semantic.min.css'
 import {RondaVacia} from "./Ronda/RondaVacia";
 import {Button, Grid, Label, Table} from "semantic-ui-react";
 import {RondaDeMates} from "./Componentes/RondaDeMates";
-import {rondaAPartirDe, todasLasPersonas} from "./Funciones/participantes";
+import {rondaAPartirDe, cargarPersonas} from "./Funciones/participantes";
 import {SelectorDePersonas} from "./Componentes/SelectorDePersonas";
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-        this.setState({personas: todasLasPersonas})
+       cargarPersonas().then(personas => this.setState({personas}))
     }
 
     render() {
