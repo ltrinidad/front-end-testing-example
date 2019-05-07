@@ -7,6 +7,8 @@ import {RondaDeMates} from "./Componentes/RondaDeMates";
 import {rondaAPartirDe, cargarPersonas} from "./Funciones/participantes";
 import {SelectorDePersonas} from "./Componentes/SelectorDePersonas";
 
+
+
 class App extends Component {
     state = {
         rondaDeMates: new RondaDeMates(new RondaVacia()),
@@ -63,8 +65,8 @@ class App extends Component {
     }
 
     restoDeLasFilas() {
-        return this.state.rondaDeMates.participantes().slice(1).map(participante =>
-            <Table.Row negative><Table.Cell>{participante}</Table.Cell></Table.Row>);
+        return this.state.rondaDeMates.participantes().slice(1).map((participante, index) =>
+            <Table.Row key={index} negative><Table.Cell>{participante}</Table.Cell></Table.Row>);
     }
 
     avanzarEnLaRonda = () => {

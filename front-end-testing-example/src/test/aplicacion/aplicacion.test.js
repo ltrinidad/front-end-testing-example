@@ -1,14 +1,29 @@
+jest.mock('../../Funciones/participantes', () => {
+    const original = require.requireActual('../../Funciones/participantes');
+    return {
+        ...original,
+        cargarPersonas: jest.fn()
+    }
+});
+
 import React from "react";
 import {configure, mount} from "enzyme";
 import App from "../../App";
 import Adapter from "enzyme-adapter-react-16/build";
+import { cargarPersonas } from '../../Funciones/participantes';
 
 configure({ adapter: new Adapter() });
+
+
+cargarPersonas.mockImplementation(() => Promise.resolve([
+    { key: 'a', value: 'a', text: 'b'}
+]));
+console.log(cargarPersonas());
 
 let app;
 
 beforeEach(() => {
-    app = mount(<App/>)
+    app = mount(<App />)
 });
 
 afterEach(() => {
