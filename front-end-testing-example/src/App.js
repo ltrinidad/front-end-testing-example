@@ -63,8 +63,8 @@ class App extends Component {
     }
 
     restoDeLasFilas() {
-        return this.state.rondaDeMates.participantes().slice(1).map(participante =>
-            <Table.Row negative><Table.Cell>{participante}</Table.Cell></Table.Row>);
+        return this.state.rondaDeMates.participantes().slice(1).map((participante, index) =>
+            <Table.Row key={index} negative><Table.Cell>{participante}</Table.Cell></Table.Row>);
     }
 
     avanzarEnLaRonda = () => {
