@@ -2,11 +2,9 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {SelectorDePersonas} from "../../Componentes/SelectorDePersonas";
-import {rondaAPartirDe} from "../../Funciones/participantes";
-import {RondaDeMates} from "../../Componentes/RondaDeMates";
-import {RondaVacia} from "../../Ronda/RondaVacia";
 
 configure({ adapter: new Adapter() });
+const callback = jest.fn(() => null);
 
 let personas = [
     {
@@ -21,47 +19,12 @@ let personas = [
     }
 ];
 
-function rondaVacia() {
-    return new RondaDeMates(new RondaVacia());
-}
+describe('Cuando un nombre del dropdown es clickeado', () => {
+    it('se llama al callback', () => {
+        const componente = shallow(<SelectorDePersonas agregar={callback} personas={personas}/>);
 
-let rondaDeMates;
+        componente.find('.seleccionar-nombre').simulate('change', {} , {value: personas[0].value});
 
-const agregarPersonaALaRonda = (unaPersona) => {rondaDeMates = rondaAPartirDe(rondaDeMates, unaPersona)};
-
-let componenteSelectorDePersonas = <SelectorDePersonas agregar={agregarPersonaALaRonda} personas={personas}/>;
-
-beforeEach(() => {
-    rondaDeMates = rondaVacia();
-    componente = shallow(componenteSelectorDePersonas)
-});
-
-let componente = shallow(componenteSelectorDePersonas);
-
-describe('Dado un dropdown', () => {
-    let dropdown = componente.find('.seleccionar-nombre');
-
-    it('es renderizado', () => {
-        expect(dropdown).toHaveLength(1);
-    });
-
-    describe('cuando se selecciona un nombre', () => {
-        const nombreSeleccionado = personas[0].value;
-
-        it('se agrega como persona seleccionada', () => {
-            dropdown.simulate('change', {}, {value: nombreSeleccionado});
-
-            expect(rondaDeMates.tomadorActual()).toEqual(nombreSeleccionado);
-        });
-
-        describe('y luego se selecciona otro', () => {
-            const nombreSeleccionado = personas[1].value;
-
-            it('se agrega luego de la primera persona seleccionada', () => {
-                dropdown.simulate('change', {}, {value: nombreSeleccionado});
-
-                expect(rondaDeMates.avanzarTurno().tomadorActual()).toEqual(nombreSeleccionado);
-            });
-        });
-    });
+        expect(callback).toBeCalled();
+    })
 });
