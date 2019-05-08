@@ -29,7 +29,7 @@ describe('Cuando inicia la aplicacion', () => {
     it('en la tabla de nombres solo se muestra el titulo, y la primera fila es vacia', () => {
         const filasDeLaTabla = app.find('TableRow');
 
-        expect(filasDeLaTabla.length).toEqual(2);
+        expect(filasDeLaTabla).toHaveLength(2);
         expect(filasDeLaTabla.first().find('TableCell').text()).toEqual(headerDeLaTabla);
         expect(filasDeLaTabla.last().find('TableCell').text()).toEqual('Turno de: ');
     });
@@ -69,7 +69,7 @@ describe('Luego de que se agrego una persona', () => {
 
         const filasDeLaTabla = app.find('TableRow');
 
-        expect(filasDeLaTabla.length).toEqual(2);
+        expect(filasDeLaTabla).toHaveLength(2);
 
         expect(filasDeLaTabla.first().find('TableCell').text()).toEqual(headerDeLaTabla);
         expect(filasDeLaTabla.last().find('TableCell').text()).toContain(unNombreValido);
@@ -102,7 +102,7 @@ describe('Luego de que se agregaron dos personas', () => {
         agregarUnaPersona(app, segundo);
         const filasDeLaTabla = app.find('TableRow');
 
-        expect(filasDeLaTabla.length).toEqual(3);
+        expect(filasDeLaTabla).toHaveLength(3);
 
         expect(filasDeLaTabla.at(1).find('TableCell').text()).toContain(primero);
         expect(filasDeLaTabla.at(2).find('TableCell').text()).toEqual(segundo);
@@ -115,7 +115,7 @@ describe('Luego de que se agregaron dos personas', () => {
 
             const filasDeLaTabla = app.find('TableRow');
 
-            expect(filasDeLaTabla.length).toEqual(3);
+            expect(filasDeLaTabla).toHaveLength(3);
             cebar(app);
             tomar(app);
 
@@ -129,7 +129,7 @@ describe('Luego de que se agregaron dos personas', () => {
 
             const filasDeLaTabla = app.find('TableRow');
 
-            expect(filasDeLaTabla.length).toEqual(3);
+            expect(filasDeLaTabla).toHaveLength(3);
             cebar(app);
             tomar(app);
 
