@@ -37,7 +37,7 @@ describe('Cuando inicia la aplicacion', () => {
         participantes = [];
 
         it('no se muestra ningun nombre disponible para agregar a la ronda', () => {
-            expect(nombresPosibles()).toEqual([]);
+            expect(nombresPosibles()).toHaveLength(0);
         })
     });
 
