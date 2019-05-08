@@ -30,7 +30,6 @@ describe('Cuando se escribe una letra', () => {
     });
 
     describe('y luego otra', () => {
-
         let segundaLetraDelNombre = 'e';
 
         it('se agrega al nombre de la persona', () => {
