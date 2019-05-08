@@ -37,31 +37,28 @@ beforeEach(() => {
 });
 
 let componente = shallow(componenteSelectorDePersonas);
+let dropdown = componente.find('.seleccionar-nombre');
 
-describe('Dado un dropdown', () => {
-    let dropdown = componente.find('.seleccionar-nombre');
+it('El componente tiene solo un selector', () => {
+    expect(dropdown).toHaveLength(1);
+});
 
-    it('es renderizado', () => {
-        expect(dropdown).toHaveLength(1);
+describe('cuando se selecciona un nombre', () => {
+    const nombreSeleccionado = personas[0].value;
+
+    it('se agrega como persona seleccionada', () => {
+        dropdown.simulate('change', {}, {value: nombreSeleccionado});
+
+        expect(rondaDeMates.tomadorActual()).toEqual(nombreSeleccionado);
     });
 
-    describe('cuando se selecciona un nombre', () => {
-        const nombreSeleccionado = personas[0].value;
+    describe('y luego se selecciona otro', () => {
+        const nombreSeleccionado = personas[1].value;
 
-        it('se agrega como persona seleccionada', () => {
+        it('se agrega luego de la primera persona seleccionada', () => {
             dropdown.simulate('change', {}, {value: nombreSeleccionado});
 
-            expect(rondaDeMates.tomadorActual()).toEqual(nombreSeleccionado);
-        });
-
-        describe('y luego se selecciona otro', () => {
-            const nombreSeleccionado = personas[1].value;
-
-            it('se agrega luego de la primera persona seleccionada', () => {
-                dropdown.simulate('change', {}, {value: nombreSeleccionado});
-
-                expect(rondaDeMates.avanzarTurno().tomadorActual()).toEqual(nombreSeleccionado);
-            });
+            expect(rondaDeMates.avanzarTurno().tomadorActual()).toEqual(nombreSeleccionado);
         });
     });
 });
