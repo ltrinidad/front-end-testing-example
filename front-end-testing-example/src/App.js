@@ -7,8 +7,6 @@ import {RondaDeMates} from "./Componentes/RondaDeMates";
 import {rondaAPartirDe, cargarPersonas} from "./Funciones/participantes";
 import {SelectorDePersonas} from "./Componentes/SelectorDePersonas";
 
-
-
 class App extends Component {
     state = {
         rondaDeMates: new RondaDeMates(new RondaVacia()),
