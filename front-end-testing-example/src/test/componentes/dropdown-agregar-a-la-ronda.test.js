@@ -19,7 +19,7 @@ let personas = [
     }
 ];
 
-describe('Cuando un nombre del dropdown es clickeado', () => {
+describe('Cuando un nombre del dropdown es elegido', () => {
     it('se llama al callback', () => {
         const componente = shallow(<SelectorDePersonas agregar={callback} personas={personas}/>);
 
