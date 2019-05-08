@@ -28,7 +28,7 @@ beforeEach(() => {
 let componente = shallow(componenteEscribirNombre);
 let input = componente.find('.input-agregar');
 
-it('El componente tiene un solo boton', () => {
+it('El componente tiene un solo elemento donde escribir el nombre de una persona', () => {
     expect(input).toHaveLength(1);
 });
 
