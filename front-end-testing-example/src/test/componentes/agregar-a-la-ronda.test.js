@@ -14,7 +14,7 @@ function rondaVacia() {
 
 let rondaDeMates = rondaVacia();
 
-it('Se renderiza un boton', () => {
+it('El componente tiene un solo boton', () => {
     const componente = shallow(<AgregarALaRonda/>);
 
     expect(componente.find('.boton-agregar')).toHaveLength(1);
