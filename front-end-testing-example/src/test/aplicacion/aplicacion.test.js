@@ -6,9 +6,19 @@ import Adapter from "enzyme-adapter-react-16/build";
 configure({ adapter: new Adapter() });
 
 let app;
+const participantes = [{
+    key: 'unaPersona',
+    text: 'unaPersona',
+    value: 'unaPersona'
+},
+    {
+        key: 'otraPersona',
+        text: 'otraPersona',
+        value: 'otraPersona',
+    }] ;
 
 beforeEach(() => {
-    app = mount(<App/>)
+    app = mount(<App/>);
 });
 
 afterEach(() => {
@@ -18,8 +28,8 @@ afterEach(() => {
 const headerDeLaTabla = 'Participantes';
 
 describe('Cuando inicia la aplicacion', () => {
-    it('puedo ingresar el nombre de una persona y esta se agrega a la ronda', () => {
-        const unNombreValido = 'lalo';
+    it('puedo elegir el nombre de una persona y esta se agrega a la ronda', () => {
+        const unNombreValido = participantes[0].value;
 
         agregarUnaPersona(app, unNombreValido);
 
@@ -43,8 +53,8 @@ describe('Cuando inicia la aplicacion', () => {
     });
 });
 
-describe('Luego de que se agrego una persona', () => {
-    const unNombreValido = 'lalo';
+describe('Luego de que se agrego una persona a la ronda', () => {
+    const unNombreValido = participantes[0].value;
 
     it('permite cargar otro nombre distinto', () => {
         const nombreInicial = app.state().personaAAgregar;
@@ -83,9 +93,9 @@ describe('Luego de que se agrego una persona', () => {
     })
 });
 
-describe('Luego de que se agregaron dos personas', () => {
-    const primero = 'lalo';
-    const segundo = 'joel';
+describe('Luego de que se agregaron dos personas a la ronda', () => {
+    const primero = participantes[0].value;
+    const segundo = participantes[1].value;
 
     it('en la tabla aparece como primero el primero que se agrego, por lo tanto es su turno', () => {
         agregarUnaPersona(app, primero);
