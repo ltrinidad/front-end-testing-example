@@ -8,8 +8,6 @@ import {rondaAPartirDe} from "../../Funciones/participantes";
 
 configure({ adapter: new Adapter() });
 
-configure({ adapter: new Adapter() });
-
 function rondaVacia() {
     return new RondaDeMates(new RondaVacia());
 }
